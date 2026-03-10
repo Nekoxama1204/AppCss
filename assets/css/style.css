@@ -187,11 +187,11 @@
 @keyframes strobeLight {
     0%, 49% {
         background: #ff007f;
-        box-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
+        box-shadow: inset 0 0 15px rgba(255, 255, 255, 0.6);
     }
     50%, 100% {
         background: #ffffff;
-        box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff;
+        box-shadow: inset 0 0 15px #ff007f;
     }
 }
 
