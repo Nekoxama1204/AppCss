@@ -1,8 +1,24 @@
 const list = document.querySelectorAll('.list');
+let isLocked = false;
 
-function activeLink() {
-    list.forEach((item) => item.classList.remove('active'));
-    this.classList.add('active');
-}
+list.forEach((item) => {
+    item.addEventListener('mouseenter', function() {
+        if (!isLocked) {
+            list.forEach((li) => li.classList.remove('active'));
+            this.classList.add('active');
+        }
+    });
 
-list.forEach((item) => item.addEventListener('mouseenter', activeLink));
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        list.forEach((li) => li.classList.remove('active'));
+        this.classList.add('active');
+        
+        isLocked = true;
+        
+        setTimeout(() => {
+            isLocked = false;
+        }, 2000);
+    });
+});
