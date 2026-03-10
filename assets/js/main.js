@@ -22,3 +22,21 @@ list.forEach((item) => {
         }, 2000);
     });
 });
+
+const socialLinks = document.querySelectorAll('.magic-menu li a.social-icon');
+
+socialLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+        e.preventDefault();
+        this.parentElement.classList.add('exploding');
+    });
+});
+
+const magicMenuEl = document.querySelector('.magic-menu');
+
+magicMenuEl.addEventListener('mouseleave', () => {
+    const explodedItems = document.querySelectorAll('.magic-menu li.exploding');
+    explodedItems.forEach(item => {
+        item.classList.remove('exploding');
+    });
+});

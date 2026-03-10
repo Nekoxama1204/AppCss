@@ -43,6 +43,7 @@
     transform: rotate(calc(360deg / 8 * var(--i))) translateX(0) scale(0);
     opacity: 0;
     transition-delay: calc(0.05s * var(--d));
+    pointer-events: auto;
 }
 
 .magic-menu:hover li {
@@ -63,17 +64,39 @@
     font-weight: bold;
     transform: rotate(calc(360deg / -8 * var(--i))) scale(1);
     box-shadow: 0 3px 4px rgba(0,0,0,0.15);
-    transition: 0.3s;
+    transition: 0.3s, transform 0s, opacity 0s;
     text-decoration: none;
-}
-
-.magic-menu li a:hover {
-    transform: rotate(calc(360deg / -8 * var(--i))) scale(1.25);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
 .magic-menu li a ion-icon {
     pointer-events: none;
+}
+
+.magic-menu li.exploding {
+    pointer-events: none;
+    transition: 0s;
+}
+
+.magic-menu li.exploding a {
+    animation: explodeDisintegrate 0.8s ease-out forwards;
+}
+
+@keyframes explodeDisintegrate {
+    0% {
+        transform: rotate(calc(360deg / -8 * var(--i))) scale(1);
+        opacity: 1;
+        filter: blur(0px);
+    }
+    15% {
+        transform: rotate(calc(360deg / -8 * var(--i))) scale(0.9);
+        border-radius: 50%;
+    }
+    100% {
+        transform: rotate(calc(360deg / -8 * var(--i) + 90deg)) scale(3);
+        opacity: 0;
+        filter: blur(15px);
+        border-radius: 10%;
+    }
 }
 
 /* =========================================
@@ -152,10 +175,24 @@
     top: -50%;
     width: 70px;
     height: 70px;
-    background: #29fd53;
     border-radius: 50%;
     border: 6px solid #212529;
     transition: 0.5s;
+}
+
+.indicator.berlin-rave {
+    animation: strobeLight 0.1s infinite;
+}
+
+@keyframes strobeLight {
+    0%, 49% {
+        background: #ff007f;
+        box-shadow: 0 0 20px #ff007f, 0 0 40px #ff007f;
+    }
+    50%, 100% {
+        background: #ffffff;
+        box-shadow: 0 0 20px #ffffff, 0 0 40px #ffffff;
+    }
 }
 
 .indicator::before {
