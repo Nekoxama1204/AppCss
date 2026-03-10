@@ -22,26 +22,32 @@
     font-size: 2rem;
     color: #333;
     cursor: pointer;
-    transition: 1.25s;
+    transition: 0.5s;
     z-index: 5;
     box-shadow: 0 0 10px rgba(0,0,0,0.15);
 }
 
-.magic-menu.active .toggle {
+.magic-menu:hover .toggle {
     transform: rotate(360deg);
+    box-shadow: 0 0 0 6px #212529, 0 0 0 10px #fff;
 }
 
 .magic-menu li {
     position: absolute;
-    left: 10px;
+    left: 50%;
+    top: 50%;
+    margin-left: -20px;
+    margin-top: -20px;
     list-style: none;
     transition: 0.5s;
-    transform-origin: 130px; 
-    transition-delay: calc(0.1s * var(--i));
+    transform: rotate(calc(360deg / 8 * var(--i))) translateX(0) scale(0);
+    opacity: 0;
+    transition-delay: calc(0.05s * var(--d));
 }
 
-.magic-menu.active li {
-    transform: rotate(calc(360deg / 8 * var(--i)));
+.magic-menu:hover li {
+    transform: rotate(calc(360deg / 8 * var(--i))) translateX(100px) scale(1);
+    opacity: 1;
 }
 
 .magic-menu li a {
@@ -51,17 +57,23 @@
     width: 40px;
     height: 40px;
     background: #fff;
-    color: #333;
+    color: var(--clr);
     border-radius: 50%;
     font-size: 1.5rem;
-    transform: rotate(calc(360deg / -8 * var(--i))); 
+    font-weight: bold;
+    transform: rotate(calc(360deg / -8 * var(--i))) scale(1);
     box-shadow: 0 3px 4px rgba(0,0,0,0.15);
-    transition: 0.5s;
+    transition: 0.3s;
     text-decoration: none;
 }
 
 .magic-menu li a:hover {
-    color: #00bcd4;
+    transform: rotate(calc(360deg / -8 * var(--i))) scale(1.25);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.magic-menu li a ion-icon {
+    pointer-events: none;
 }
 
 /* =========================================
@@ -142,7 +154,7 @@
     height: 70px;
     background: #29fd53;
     border-radius: 50%;
-    border: 6px solid #212529; /* Coincide con el bg-dark */
+    border: 6px solid #212529;
     transition: 0.5s;
 }
 

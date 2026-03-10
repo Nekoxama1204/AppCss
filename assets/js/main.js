@@ -1,12 +1,3 @@
-// Magic Social Share Menu Logic
-const toggleBtn = document.getElementById('toggleBtn');
-const magicMenu = document.getElementById('magicMenu');
-
-toggleBtn.addEventListener('click', () => {
-    magicMenu.classList.toggle('active');
-});
-
-// Animated Navbar Logic
 const list = document.querySelectorAll('.list');
 
 function activeLink() {
@@ -14,4 +5,4 @@ function activeLink() {
     this.classList.add('active');
 }
 
-list.forEach((item) => item.addEventListener('click', activeLink));
+list.forEach((item) => item.addEventListener('mouseenter', activeLink));
